@@ -1,8 +1,17 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Dashboard from '../componants/Dashboard'
 import Title from '../componants/Title'
+import Footer from '../componants/Footer'
+import SliderAudio from '../componants/SliderAudio'
 
 export default function Home() {
+
+  const user = {
+    id:1,
+    email:"deflo59@gmail.com",
+    name: "Florent",
+    isAdmin: true
+  }
   return (
     <div>
       <Head>
@@ -12,25 +21,15 @@ export default function Home() {
       </Head>
 
       <main>
-      <Title name='florent' />
-      <Title name='Remy' />
+        <Title name= {user.name} />
+        { user.isAdmin ? ( <> <p>Bienvenue super admin</p> <Dashboard /> </>) : (<p>bienvenue visiteur</p>) }
+        <SliderAudio/>
+
 
 
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-          {' '} explored by Florent
-        </a>
-      </footer>
+      <Footer/>
     </div>
   )
 }
