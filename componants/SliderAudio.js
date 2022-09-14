@@ -8,7 +8,7 @@ import Styles from "../styles/sliderAudio.module.css";
 export default function SliderAudio() {
 
     const fetchAllMusics = async () => {
-        const res = await fetch('http://localhost:3000/api/music');
+        const res = await fetch('api/music');
         const allMusics = await res.json();
         SetAllMusics(allMusics);
     }
