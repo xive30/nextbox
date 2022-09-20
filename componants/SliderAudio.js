@@ -5,6 +5,8 @@ import { Pagination } from "swiper";
 import Styles from "../styles/sliderAudio.module.css";
 import React, { useRef, useState, useEffect } from "react";
 import AudioPlayer from "./AudioPlayer";
+import Image from "next/image";
+import Vinyle from "./Vinyle"
 
 export default function SliderAudio() {
 
@@ -23,33 +25,35 @@ export default function SliderAudio() {
     // console.log(allMusics);
 
 
-    const selectMusic = (e) => {
-        setCurrentMusic(allMusics[e.currentTarget.dataset.id - 1]);
-        // console.log(currentMusic);
+    const selectMusic = async (e) => {
+        const index =
+            setCurrentMusic(allMusics[e.currentTarget.dataset.id]);
+        console.log(currentMusic);
     }
 
     return (
         <>
             <Swiper
-                pagination={{ clickable: true, }} 
-                modules={[Pagination]} 
+                pagination={{ clickable: true, }}
+                modules={[Pagination]}
                 className={Styles.swipper}
+                loop={true}
 
                 spaceBetween={10}
                 slidesPerView={2}
-                // onSlideChange={() => console.log("slide change")}
-                // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
             >
-                {allMusics.map((music) => (
-                    <SwiperSlide className={Styles.swiperSlide} key={music.id}>
-                        {/* <Image
-                //   src="http://placeimg.com/640/640/any"
-                    src={music.img}
-                    alt={music.title}
-                    layout="fill"
-                /> */}
-                        <div className="title">
-                            <h2 className="h3" data-id={music.id} onClick={selectMusic}>
+                {allMusics.map((music, index) => (
+                    <SwiperSlide className={Styles.swiperSlide} key={index}>
+                        {<Image
+                            className="Styles.img"
+                            src={music.img}
+                            alt={music.title}
+                            layout="fill"
+                        />}
+                        <div className={Styles.title}>
+                            <h2 data-id={index} onClick={selectMusic}>
                                 {music.title}
                             </h2>
                         </div>
@@ -57,6 +61,7 @@ export default function SliderAudio() {
                 ))}
             </Swiper>
             <AudioPlayer music={currentMusic} />
+            <Vinyle music={currentMusic} />
         </>
     );
 };

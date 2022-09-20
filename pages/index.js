@@ -24,14 +24,14 @@ export default function Home() {
 
 			<main>
 				<Title name={user.name} />
-				{user.isAdmin ? (
+				{/* {user.isAdmin ? (
 					<>
 						<p>Bienvenue super admin !</p>
 						<Dashboard />
 					</>
 				) : (
 					<p>bienvenue visiteur</p>
-				)}
+				)} */}
 			</main>
 
 			<SliderAudio />
